@@ -1,0 +1,478 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>重庆九茂生物科技有限公司</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+        }
+
+        body {
+            background-color: #f7f9fc;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        /* 轮播图样式 */
+        .carousel-container {
+            width: 100%;
+            margin-bottom: 30px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .carousel {
+            position: relative;
+            width: 100%;
+            height: 300px;
+            overflow: hidden;
+        }
+
+        .carousel-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+            .carousel-slide.active {
+                opacity: 1;
+            }
+
+            .carousel-slide img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+        .slide-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .slide-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .slide-desc {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .carousel-controls {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+            padding: 0 10px;
+            z-index: 10;
+        }
+
+        .carousel-btn {
+            background: rgba(255, 255, 255, 0.7);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 20px;
+            color: #333;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+            .carousel-btn:hover {
+                background: rgba(255, 255, 255, 0.9);
+                transform: scale(1.1);
+            }
+
+        .carousel-indicators {
+            position: absolute;
+            bottom: 15px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            z-index: 10;
+        }
+
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+            .indicator.active {
+                background: white;
+                transform: scale(1.2);
+            }
+
+        .company-logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+            .company-logo h1 {
+                color: #2c3e50;
+                font-size: 28px;
+                border-bottom: 3px solid #3498db;
+                display: inline-block;
+                padding-bottom: 10px;
+            }
+
+        .contact-section {
+            margin-bottom: 25px;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            color: #2980b9;
+            font-size: 20px;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 1px dashed #eee;
+        }
+
+        .icon {
+            margin-right: 10px;
+            font-size: 22px;
+        }
+
+        .info-item {
+            background: #f8fafc;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 12px;
+            border-left: 4px solid #3498db;
+            transition: transform 0.2s;
+        }
+
+            .info-item:hover {
+                transform: translateX(5px);
+                background: #eef5ff;
+            }
+
+        .info-label {
+            font-weight: bold;
+            color: #555;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .info-content {
+            color: #2c3e50;
+            font-size: 17px;
+        }
+
+        .address-link {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+            .address-link:hover {
+                text-decoration: underline;
+            }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 30px;
+            padding-top: 25px;
+            border-top: 1px solid #eee;
+        }
+
+        .social-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+            .social-icon:hover {
+                transform: scale(1.1);
+            }
+
+        .wechat {
+            background: #07C160;
+        }
+
+        .phone {
+            background: #FF9500;
+        }
+
+        .email {
+            background: #EA4335;
+        }
+
+        .map {
+            background: #4285F4;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #95a5a6;
+            font-size: 14px;
+        }
+
+        /* 适配手机屏幕 */
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px;
+            }
+
+            .carousel {
+                height: 250px;
+            }
+
+            .slide-title {
+                font-size: 18px;
+            }
+
+            .slide-desc {
+                font-size: 13px;
+            }
+
+            .company-logo h1 {
+                font-size: 24px;
+            }
+
+            .info-content {
+                font-size: 16px;
+            }
+
+            .carousel-btn {
+                width: 35px;
+                height: 35px;
+                font-size: 16px;
+            }
+        }
+    </style>
+    <!-- 引入图标库 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 轮播图部分 -->
+        <div class="carousel-container">
+            <div class="carousel">
+                <!-- 幻灯片1 - 已修复图片链接 -->
+                <div class="carousel-slide active">
+                    <!-- 使用正确的图片链接格式 -->
+                    <!-- 如果使用IBB图床，需要获取直接的图片链接，而不是页面链接 -->
+                    <!-- 例如：https://i.ibb.co/xxxxxxx/image.jpg -->
+                    <img src="https://i.ibb.co/0jtdVn03/gongsi.png" alt="公司环境">
+                    <div class="slide-content">
+                        <div class="slide-title">重庆九茂生物科技有限公司</div>
+                        <div class="slide-desc">专注虫草生态繁育研究与产品开发</div>
+                    </div>
+                </div>
+
+                <!-- 幻灯片2 - 已修复图片链接 -->
+                <div class="carousel-slide">
+                    <img src="https://i.ibb.co/cKqZjN8V/xianwei.jpg" alt="实验室设备">
+                    <div class="slide-content">
+                        <div class="slide-title">先进实验室设备</div>
+                        <div class="slide-desc">配备国际先进的研发与检测仪器</div>
+                    </div>
+                </div>
+
+                <!-- 幻灯片3 - 保持原样 -->
+                <div class="carousel-slide">
+                    <img src="https://i.ibb.co/FqzJMY1b/image.png" alt="产品展示">
+                    <div class="slide-content">
+                        <div class="slide-title">高质量产品</div>
+                        <div class="slide-desc">严格质量控制，为客户提供优质产品</div>
+                    </div>
+                </div>
+
+                <!-- 轮播控制按钮 -->
+                <div class="carousel-controls">
+                    <button class="carousel-btn prev-btn">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="carousel-btn next-btn">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+
+                <!-- 轮播指示器 -->
+                <div class="carousel-indicators">
+                    <span class="indicator active" data-slide="0"></span>
+                    <span class="indicator" data-slide="1"></span>
+                    <span class="indicator" data-slide="2"></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 公司名称标题 -->
+        <div class="company-logo">
+            <h1>📞 联系我们</h1>
+        </div>
+
+        <!-- 联系方式区域 -->
+        <div class="contact-section">
+            <div class="section-title">
+                <span class="icon">📍</span>
+                <span>公司地址</span>
+            </div>
+            <div class="info-item">
+                <span class="info-content"><strong>重庆市合川区九阳路77号合川医药健康产业园C12-2</strong></span>
+                <br><br>
+                <a href="https://surl.amap.com/1yAH0Vk51By" target="_blank" class="address-link">
+                    <i class="fas fa-map-marker-alt"></i> 点击查看地图
+                </a>
+            </div>
+        </div>
+
+        <div class="contact-section">
+            <div class="section-title">
+                <span class="icon">📱</span>
+                <span>联系方式</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">电话/热线</span>
+                <span class="info-content"><strong>（023）4261 9899</strong></span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">商务邮箱</span>
+                <span class="info-content"><strong>1395076832@qq.com</strong></span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">工作时间</span>
+                <span class="info-content">周一至周五 8:30-17:30 (节假日除外)</span>
+            </div>
+        </div>
+
+        <!-- 社交媒体链接 -->
+        <div class="social-links">
+           
+          
+            <a href="https://surl.amap.com/1yAH0Vk51By" target="_blank" class="social-icon map" title="查看地图">
+                <i class="fas fa-map-marked-alt"></i>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // 轮播图功能
+        document.addEventListener('DOMContentLoaded', function () {
+            const slides = document.querySelectorAll('.carousel-slide');
+            const indicators = document.querySelectorAll('.indicator');
+            const prevBtn = document.querySelector('.prev-btn');
+            const nextBtn = document.querySelector('.next-btn');
+            let currentSlide = 0;
+            let slideInterval;
+            const slideDuration = 5000; // 5秒切换一次
+
+            // 初始化轮播图
+            function initCarousel() {
+                // 开始自动轮播
+                startSlideShow();
+
+                // 添加事件监听器
+                prevBtn.addEventListener('click', showPrevSlide);
+                nextBtn.addEventListener('click', showNextSlide);
+
+                // 为指示器添加点击事件
+                indicators.forEach(indicator => {
+                    indicator.addEventListener('click', function () {
+                        const slideIndex = parseInt(this.getAttribute('data-slide'));
+                        goToSlide(slideIndex);
+                    });
+                });
+
+                // 鼠标悬停时暂停自动轮播
+                const carousel = document.querySelector('.carousel');
+                carousel.addEventListener('mouseenter', pauseSlideShow);
+                carousel.addEventListener('mouseleave', startSlideShow);
+            }
+
+            // 显示特定幻灯片
+            function goToSlide(n) {
+                // 隐藏当前幻灯片
+                slides[currentSlide].classList.remove('active');
+                indicators[currentSlide].classList.remove('active');
+
+                // 计算新幻灯片索引
+                currentSlide = (n + slides.length) % slides.length;
+
+                // 显示新幻灯片
+                slides[currentSlide].classList.add('active');
+                indicators[currentSlide].classList.add('active');
+            }
+
+            // 显示下一张幻灯片
+            function showNextSlide() {
+                goToSlide(currentSlide + 1);
+            }
+
+            // 显示上一张幻灯片
+            function showPrevSlide() {
+                goToSlide(currentSlide - 1);
+            }
+
+            // 开始自动轮播
+            function startSlideShow() {
+                clearInterval(slideInterval);
+                slideInterval = setInterval(showNextSlide, slideDuration);
+            }
+
+            // 暂停自动轮播
+            function pauseSlideShow() {
+                clearInterval(slideInterval);
+            }
+
+            // 初始化轮播图
+            initCarousel();
+        });
+    </script>
+</body>
+</html>
